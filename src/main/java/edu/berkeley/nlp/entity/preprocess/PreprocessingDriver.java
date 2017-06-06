@@ -320,7 +320,8 @@ public class PreprocessingDriver implements Runnable {
   public static Tree<String> parse(CoarseToFineMaxRuleParser parser, CoarseToFineMaxRuleParser backoffParser, List<String> sentence) {
     Tree<String> result = parseSoft(parser, backoffParser, sentence);
     if (result == null) {
-      throw new RuntimeException("Couldn't parse even with backoff parser!");
+      // throw new RuntimeException("Couldn't parse even with backoff parser!");
+      Logger.logss("Couldn't parse even with backoff parser! Skip the sentence: " + sentence.toString());
     }
     return result;
   }
