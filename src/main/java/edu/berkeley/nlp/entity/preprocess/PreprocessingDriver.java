@@ -178,6 +178,9 @@ public class PreprocessingDriver implements Runnable {
   public static void writeConllLines(String docName, String[][] docConllLines, PrintWriter writer) {
     writer.println("#begin document (" + docName + "); part 000");
     for (String[] sentenceConllLines : docConllLines) {
+      if (sentenceConllLines == null){
+        continue;
+      }
       for (String conllLine : sentenceConllLines) {
         writer.println(conllLine);
       }
