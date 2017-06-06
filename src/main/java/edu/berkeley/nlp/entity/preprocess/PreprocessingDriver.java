@@ -191,7 +191,10 @@ public class PreprocessingDriver implements Runnable {
     for (int sentIdx = 0; sentIdx < tokenizedSentences.length; sentIdx++) {
       String[] tokenizedSentence = tokenizedSentences[sentIdx];
       Tree<String> parse = parse(parser, backoffParser, Arrays.asList(tokenizedSentence));
-      if (parse.getYield().size() != tokenizedSentence.length) {
+      if (parse == null){
+        continue;
+      }
+      else if (parse.getYield().size() != tokenizedSentence.length) {
         Logger.logss("WARNING: couldn't parse sentence, dropping it: " + Arrays.toString(tokenizedSentence));
         Logger.logss("  (This will be fixed to backing off to an X-bar grammar in a future release)");
       } else {
